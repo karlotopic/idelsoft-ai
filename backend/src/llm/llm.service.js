@@ -32,28 +32,20 @@ export class LLMService {
     let systemPrompt = "";
 
     if (emailType === "sales") {
-      systemPrompt = `You are a Sales Assistant. Generate concise sales emails that are:
+      systemPrompt = `You are a Sales Assistant. Generate concise sales email content that is:
       - Under 40 words total
       - Maximum 7-10 words per sentence
       - Professional and engaging
-      - Tailored to the business context of the user's request`
+      - Tailored to the business context of the user's request
+      - Only generate the main body content (no greeting or signature)`
     } else {
-      systemPrompt = `You are a Follow-up Assistant. Generate polite follow-up emails that are:
+      systemPrompt = `You are a Follow-up Assistant. Generate polite follow-up email content that is:
       - Professional and concise
       - Under 40 words total
       - Maximum 7-10 words per sentence
-      - Gentle and non-pushy`
+      - Gentle and non-pushy
+      - Only generate the main body content (no greeting or signature)`
     }
-
-    systemPrompt += `
-      The email should be in the following format:
-      Hello [name],
-      [body]
-      Best regards,
-      [your name]
-
-      Generate both a subject line and email body.
-    `;
 
     const emailResponse = z.object({
       body: z.string(),
@@ -63,7 +55,7 @@ export class LLMService {
     const stream = await this.llmClient.generateStreamingCompletion(
       systemPrompt,
       emailMessage,
-      0.1,
+      0.6,
       emailResponse
     );
 
