@@ -58,7 +58,7 @@ export default function Home() {
   const fetchEmails = async () => {
     setEmailsLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/emails');
+      const response = await fetch('/api/emails');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -74,7 +74,7 @@ export default function Home() {
 
   const handleEmailSelect = async (emailId) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/emails/${emailId}`);
+      const response = await fetch(`/api/emails/${emailId}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -94,7 +94,7 @@ export default function Home() {
     
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/emails', {
+      const response = await fetch('/api/emails', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -128,7 +128,7 @@ export default function Home() {
     setComposeForm(prev => ({ ...prev, subject: '', body: '' }));
     
     try {
-      const response = await fetch('http://localhost:3001/api/emails/generate', {
+      const response = await fetch('/api/emails/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
