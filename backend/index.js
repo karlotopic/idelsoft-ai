@@ -1,8 +1,8 @@
 // ESM
 import 'dotenv/config';
 import Fastify from 'fastify';
-import routes from './src/routes/index.js';
 import cors from '@fastify/cors';
+import { EmailController } from './src/email/email.controller.js';
 
 
 /**
@@ -12,7 +12,9 @@ const fastify = Fastify({
   logger: true
 });
 
-fastify.register(routes);
+const emailController = new EmailController();
+
+fastify.register(emailController.registerRoutes.bind(emailController), { prefix: '/api' });
 
 fastify.register(cors, {
   origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],

@@ -1,15 +1,16 @@
 import { knexInstance } from '../../db/index.js';
 
 export class EmailRepository {
-  static async getEmails() {
+  // also, the db connection should be injected
+  async getEmails() {
     return knexInstance.select('*').from('emails').orderBy('created_at', 'desc');
   }
 
-  static async getEmailById(id) {
+  async getEmailById(id) {
     return knexInstance.select('*').from('emails').where('id', id).first();
   }
 
-  static async createEmail(data) {
+  async createEmail(data) {
     return knexInstance('emails').insert(data).returning('*');
   }
-}
+} 

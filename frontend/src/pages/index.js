@@ -128,7 +128,7 @@ export default function Home() {
     setComposeForm(prev => ({ ...prev, subject: '', body: '' }));
     
     try {
-      const response = await fetch('http://localhost:3001/api/generate-email', {
+      const response = await fetch('http://localhost:3001/api/emails/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
