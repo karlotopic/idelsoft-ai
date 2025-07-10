@@ -21,7 +21,7 @@ import {
 } from '@mui/material';
 import {
   Add as AddIcon,
-  AutoAwesome as AIIcon,
+  AutoAwesome,
   Close as CloseIcon,
   Send as SendIcon
 } from '@mui/icons-material';
@@ -369,7 +369,9 @@ export default function Home() {
                 color="primary"
                 disabled={isStreaming}
               >
-                <AIIcon />
+                <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+                  AI ✨
+                </Typography>
               </IconButton>
             </Box>
           </Box>
@@ -396,7 +398,6 @@ export default function Home() {
       >
         <DialogTitle>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <AIIcon color="primary" />
             <Typography variant="h6">AI Email Generation</Typography>
           </Box>
         </DialogTitle>
@@ -474,7 +475,7 @@ export default function Home() {
               onClick={handleAIGenerate}
               variant="contained"
               disabled={aiLoading || !aiPrompt.trim()}
-              startIcon={aiLoading ? <CircularProgress size={20} /> : <AIIcon />}
+              startIcon={aiLoading ? <CircularProgress size={20} /> : <AutoAwesome />}
             >
               {aiLoading ? 'Generating...' : 'Generate Email'}
             </Button>
